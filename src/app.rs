@@ -55,11 +55,23 @@ impl App {
                         self.sample_location.down();
                     }
 
-                    if input.virtual_keycode == Some(VirtualKeyCode::NumpadAdd) {
+                    if input.virtual_keycode == Some(VirtualKeyCode::Z) {
                         self.sample_location.zoom_in();
                     }
 
-                    if input.virtual_keycode == Some(VirtualKeyCode::NumpadSubtract) {
+                    if input.virtual_keycode == Some(VirtualKeyCode::Space) {
+                        self.sample_location.zoom_inc();
+                    }
+
+                    if input.virtual_keycode == Some(VirtualKeyCode::I) {
+                        self.sample_location.incr_max_iter();
+                    }
+
+                    if input.virtual_keycode == Some(VirtualKeyCode::D) {
+                        self.sample_location.decr_max_iter();
+                    }
+
+                    if input.virtual_keycode == Some(VirtualKeyCode::Slash) {
                         self.sample_location.zoom_out();
                     }
                 }

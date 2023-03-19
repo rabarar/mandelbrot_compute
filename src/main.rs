@@ -15,7 +15,7 @@ mod math;
 mod renderer;
 
 fn main() {
-    let size = UVec2::new(1024, 1024);
+    let size = UVec2::new(4096, 3072);
     let event_loop = EventLoop::new();
     let window = WindowBuilder::new()
         .with_inner_size(PhysicalSize::new(size.x, size.y))
@@ -60,7 +60,7 @@ fn main() {
             Event::RedrawRequested(window_id) if window_id == window.id() => {
                 let mandelbrot = app
                     .computer
-                    .run(&app.gpu, &app.sample_location.to_mandlebrot_params(180));
+                    .run(&app.gpu, &app.sample_location.to_mandlebrot_params(app.sample_location.current_iter()));
                 match app.renderer.render(&app.gpu, mandelbrot) {
                     Ok(_) => {}
                     // Reconfigure the surface if lost

@@ -11,15 +11,24 @@ pub struct SampleLocation {
     position: FVec2,
     zoom: f32,
     move_speed: f32,
+    curr_iter: i32,
 }
 
 impl Default for SampleLocation {
     fn default() -> Self {
         Self {
             position: FVec2 { x: 0.0, y: 0.0 },
-            zoom: 1.0,
+            zoom: 2.0,
             move_speed: 0.05,
+            curr_iter: 10,
         }
+    }
+
+}
+
+impl SampleLocation {
+    pub fn current_iter(&self) -> i32 {
+        self.curr_iter
     }
 }
 
@@ -60,6 +69,21 @@ impl SampleLocation {
 
     pub fn zoom_out(&mut self) {
         self.zoom *= 2.0;
+    }
+
+    pub fn zoom_inc(&mut self) {
+        self.zoom *= 0.9;
+    }
+
+    pub fn incr_max_iter(&mut self) {
+        self.curr_iter  += 10;
+    }
+
+    pub fn decr_max_iter(&mut self) {
+        self.curr_iter  -= 10;
+        if self.curr_iter < 10 {
+            self.curr_iter = 1;
+        }
     }
 }
 
